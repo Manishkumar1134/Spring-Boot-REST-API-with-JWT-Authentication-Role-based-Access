@@ -7,6 +7,7 @@ import com.springSecurityP1.SpringSecurity.dto.PostUpdateRequest;
 import com.springSecurityP1.SpringSecurity.service.PostService;
 import com.springSecurityP1.SpringSecurity.swagger.annotation.post.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class PostController {
     @PostMapping
     @Secured({"ROLE_USER"})
     @SwaggerCreatePost
-    public ResponseEntity<PostDto> createNewPost(@RequestBody PostCreateRequest postCreateRequest) {
+    public ResponseEntity<PostDto> createNewPost( @Valid @RequestBody PostCreateRequest postCreateRequest) {
         return ResponseEntity.ok(postService.createNewPost(postCreateRequest));
     }
 
@@ -65,7 +66,7 @@ public class PostController {
     @PutMapping("/{id}")
     @PreAuthorize("@postSecurity.isOwnerOfThisPost(#id) or hasRole('ADMIN')")
     @SwaggerUpdatePost
-    public ResponseEntity<PostDto> updatePost(@PathVariable Long id, @RequestBody PostUpdateRequest updateRequest) {
+    public ResponseEntity<PostDto> updatePost(@PathVariable Long id, @Valid @RequestBody PostUpdateRequest updateRequest) {
         return ResponseEntity.ok(postService.updatePost(id, updateRequest));
     }
 

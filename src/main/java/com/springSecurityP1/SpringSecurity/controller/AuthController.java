@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class AuthController {
 
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
     @SwaggerSignUpOperation
-    public UserDto createNewUser(@RequestBody SignUpDto userDto) {
+    public UserDto createNewUser(@Valid @RequestBody SignUpDto userDto) {
         return userService.signUp(userDto);
     }
 

@@ -1,5 +1,6 @@
 package com.springSecurityP1.SpringSecurity.swagger.annotation.auth;
 
+import com.springSecurityP1.SpringSecurity.dto.SignUpDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -25,12 +26,12 @@ import java.lang.annotation.RetentionPolicy;
                 description = "Sign-up details",
                 required = true,
                 content = @Content(
-                        schema = @Schema(implementation = com.springSecurityP1.SpringSecurity.dto.SignUpDto.class),
+                        schema = @Schema(implementation = SignUpDto.class),
                         examples = @ExampleObject(
                                 value = "{\n" +
-                                        "  \"name\": \"john_doe\",\n" +
+                                        "  \"name\": \"John_doe\",\n" +
                                         "  \"email\": \"john_doe123@gmail.com\",\n" +
-                                        "  \"password\": \"john_doe123\",\n" +
+                                        "  \"password\": \"John@doe123\",\n" +
                                         "  \"roles\": [\"ADMIN\",\"USER\"]\n" +
                                         "}"
                         )

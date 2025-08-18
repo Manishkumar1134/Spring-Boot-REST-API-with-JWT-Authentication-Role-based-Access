@@ -8,6 +8,7 @@ import com.springSecurityP1.SpringSecurity.entity.User;
 import com.springSecurityP1.SpringSecurity.service.UserService;
 import com.springSecurityP1.SpringSecurity.swagger.annotation.user.SwaggerGetAllUsers;
 import com.springSecurityP1.SpringSecurity.swagger.annotation.user.SwaggerUpdateUser;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,7 @@ public class UserController {
     @SwaggerUpdateUser
     public ResponseEntity<UserUpdateResponse> updateUser(
             @PathVariable Long id,
-            @RequestBody UpdateUserRequest updateRequest
+            @Valid @RequestBody UpdateUserRequest updateRequest
     ) {
         UserUpdateResponse updatedUser = userService.updateUser(id, updateRequest);
         return ResponseEntity.ok(updatedUser);
